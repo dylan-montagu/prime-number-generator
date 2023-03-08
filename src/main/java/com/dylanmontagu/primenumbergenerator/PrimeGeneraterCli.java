@@ -6,34 +6,37 @@ import java.util.Scanner;
 public class PrimeGeneraterCli {
 
 	PrimeNumberGenerator generator;
-
+	UserState userState;
+	
 	PrimeGeneraterCli(PrimeNumberGenerator generator) {
 		this.generator = generator;
+		this.userState = new UserState();
 	}
 	
 	public void generatePrimesFromCliInput() {
-		int startingValue, endingValue;
         Scanner in = new Scanner(System.in);
         
         System.out.println("Prime number generator returns all prime numbers in a given range (inclusive)");
         
         // get starting value input from user
         System.out.print("Enter starting value of range: ");
-        while (true) {
+        while (!userState.isStartingValueSet()) {
 	        try {
-				startingValue = in.nextInt();
+				userState.setStartingValue(in.nextInt());
+				userState.setStartingValueSet(true);
 				break;
 			} catch (InputMismatchException e) {
 				System.out.print("Value inputted is not a valid int. Please enter a valid starting value: ");
 				in.next();
 			}
     	}
-        
+
         // get ending value input from user
         System.out.print("Enter ending value of range: ");
-        while (true) {
+        while (!userState.isEndingValueSet()) {
 	        try {
-				endingValue = in.nextInt();
+				userState.setEndingValue(in.nextInt());
+				userState.setEndingValueSet(true);
 				break;
 			} catch (InputMismatchException e) {
 				System.out.print("Value inputted is not a valid int. Please enter a valid ending value: ");
@@ -41,9 +44,12 @@ public class PrimeGeneraterCli {
 			}
     	}
         
-        System.out.println("Prime numbers between " + startingValue + " and " + endingValue + " are listed below:");
-        System.out.println(generator.generate(startingValue, endingValue));
+        System.out.println(String.format("Prime numbers between %d and %d are listed below:", 
+        		userState.getStartingValue(), userState.getEndingValue()));
+        System.out.println(generator.generate(userState.getStartingValue(), userState.getEndingValue()));
         
+        userState.setPrimeNumbersPrinted(true);
         in.close();
+        
 	}
 }
