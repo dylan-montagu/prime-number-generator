@@ -1,23 +1,24 @@
 package com.dylanmontagu.primenumbergenerator;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
-public class PrimeGeneratorCli {
+public class PrimeGeneratorFromCli implements PrimeGeneratorFromInput{
 
 	PrimeNumberGenerator generator;
 	UserState userState;
 	
-	PrimeGeneratorCli(PrimeNumberGenerator generator) {
+	PrimeGeneratorFromCli(PrimeNumberGenerator generator, UserState userState) {
 		this.generator = generator;
-		this.userState = new UserState();
+		this.userState = userState;
 	}
 	
-	int getInput(Scanner scanner) {
+	public int getInput(Scanner scanner) {
 		return scanner.nextInt();
 	}
 	
-	public void generatePrimesFromCliInput() {
+	public List<Integer> generatePrimesFromInput() {
         Scanner scanner = new Scanner(System.in);
         
         System.out.println("Prime number generator returns all prime numbers in a given range (inclusive)");
@@ -51,11 +52,14 @@ public class PrimeGeneratorCli {
         System.out.println(String.format("Prime numbers between %d and %d are listed below:", 
         		userState.getStartingValue(), 
         		userState.getEndingValue()));
+        
+        List<Integer> primeNumbers = generator.generate(userState.getStartingValue(), userState.getEndingValue());
         System.out.println(generator.generate(userState.getStartingValue(), userState.getEndingValue()));
         
         //clean up
         userState.setPrimeNumbersPrinted(true);
         scanner.close();
         
+        return primeNumbers;
 	}
 }

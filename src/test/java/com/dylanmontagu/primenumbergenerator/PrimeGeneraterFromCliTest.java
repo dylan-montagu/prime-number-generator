@@ -18,17 +18,17 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class PrimeGeneraterCliTest {
+public class PrimeGeneraterFromCliTest {
 
-	static PrimeGeneratorCli cli;
+	static PrimeGeneratorFromCli cli;
 	static PrimeNumberGenerator generator;
-	static PrimeGeneratorCli spyCli;
+	static PrimeGeneratorFromCli spyCli;
 	
 	@BeforeClass
 	public static void setup() {
 		generator = new SixKPrimeNumberGenerator();
-		cli = new PrimeGeneratorCli(generator);
-		spyCli = spy(new PrimeGeneratorCli(generator));
+		cli = new PrimeGeneratorFromCli(generator, new UserState());
+		spyCli = spy(new PrimeGeneratorFromCli(generator, new UserState()));
 	}
 	
 	@After
@@ -60,7 +60,7 @@ public class PrimeGeneraterCliTest {
 				.doReturn(7)
 				.when(spyCli).getInput(any(Scanner.class));
 		
-		spyCli.generatePrimesFromCliInput();
+		spyCli.generatePrimesFromInput();
 		assertTrue(spyCli.userState.isPrimeNumbersPrinted());
 	}
 	
@@ -87,7 +87,7 @@ public class PrimeGeneraterCliTest {
 				.doReturn(9)
 				.when(spyCli).getInput(any(Scanner.class));
 		
-		spyCli.generatePrimesFromCliInput();
+		spyCli.generatePrimesFromInput();
 		assertTrue(spyCli.userState.isPrimeNumbersPrinted());
 	}
 	
@@ -118,7 +118,7 @@ public class PrimeGeneraterCliTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
     	
-    	cli.generatePrimesFromCliInput();
+    	cli.generatePrimesFromInput();
     	String expectedOutput = new String("Prime number generator returns all prime numbers in a given range (inclusive)\n"
     			+ "Enter starting value of range: "
     			+ "Enter ending value of range: "
@@ -137,7 +137,7 @@ public class PrimeGeneraterCliTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
     	
-    	cli.generatePrimesFromCliInput();
+    	cli.generatePrimesFromInput();
     	String expectedOutput = new String("Prime number generator returns all prime numbers in a given range (inclusive)\n"
     			+ "Enter starting value of range: "
     			+ "Value inputted is not a valid int. Please enter a valid starting value: "
