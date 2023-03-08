@@ -34,22 +34,25 @@ public class SquareRootIterativePrimeNumberGeneratorTest {
 
 	@Test
 	public void testGenerateWithNumericallyIncreasingArguments() {
-		List<Integer> primeNumberResults = Arrays.asList(7901, 7907, 7919);
-		assertEquals(primeNumberResults, generator.generate(7900, 7920));
+		List<Integer> expectedPrimeNumberResults = Arrays.asList(7901, 7907, 7919);
+		assertEquals(expectedPrimeNumberResults, generator.generate(7900, 7920));
 
-		primeNumberResults = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19);
-		assertEquals(primeNumberResults, generator.generate(-10, 20));
+		expectedPrimeNumberResults = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19);
+		assertEquals(expectedPrimeNumberResults, generator.generate(-10, 20));
 	}
 
 	@Test
 	public void testGenerateWithNumericallyDecreasingArguments() {
-		List<Integer> primeNumberResults = Arrays.asList(7901, 7907, 7919);
-		assertEquals(primeNumberResults, generator.generate(7920, 7900));
+		List<Integer> expectedPrimeNumberResults = Arrays.asList(7901, 7907, 7919);
+		assertEquals(expectedPrimeNumberResults, generator.generate(7920, 7900));
 
-		primeNumberResults = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19);
-		assertEquals(primeNumberResults, generator.generate(20, -10));
-		
-		primeNumberResults = Arrays.asList(7901);
-		assertEquals(primeNumberResults, generator.generate(7901, 7901));
+		expectedPrimeNumberResults = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19);
+		assertEquals(expectedPrimeNumberResults, generator.generate(20, -10));
+	}
+	
+	@Test
+	public void testGenerateWithEqualArguments() {
+		List<Integer>expectedPrimeNumberResults = Arrays.asList(7901);
+		assertEquals(expectedPrimeNumberResults, generator.generate(7901, 7901));
 	}
 }

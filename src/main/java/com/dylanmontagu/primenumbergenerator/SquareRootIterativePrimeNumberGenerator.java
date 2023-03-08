@@ -1,13 +1,20 @@
 package com.dylanmontagu.primenumbergenerator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SquareRootIterativePrimeNumberGenerator implements PrimeNumberGenerator {
 
 	@Override
 	public List<Integer> generate(int startingValue, int endingValue) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Integer> primeNumbers = new ArrayList<>();
+
+		for (int i = Math.min(startingValue, endingValue); i <= Math.max(startingValue, endingValue); i++) {
+			if (isPrime(i)) {
+				primeNumbers.add(i);
+			}
+		}
+		return primeNumbers;
 	}
 
 	@Override
@@ -22,5 +29,5 @@ public class SquareRootIterativePrimeNumberGenerator implements PrimeNumberGener
 		}
 		return true;
 	}
-
+	
 }
