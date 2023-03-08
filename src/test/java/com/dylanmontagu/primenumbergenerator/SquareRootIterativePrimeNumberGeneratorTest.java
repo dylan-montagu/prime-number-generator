@@ -48,5 +48,8 @@ public class SquareRootIterativePrimeNumberGeneratorTest {
 
 		primeNumberResults = Arrays.asList(2, 3, 5, 7, 11, 13, 17, 19);
 		assertEquals(primeNumberResults, generator.generate(20, -10));
+		
+		primeNumberResults = Arrays.asList(7901);
+		assertEquals(primeNumberResults, generator.generate(7901, 7901));
 	}
 }
