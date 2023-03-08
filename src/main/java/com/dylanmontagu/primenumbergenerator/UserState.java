@@ -14,7 +14,7 @@ public class UserState {
 		this.primeNumbersPrinted = false;
 	}
 	
-	// usefule if repeating prime generator with same user, and for testing
+	// useful if repeating prime generator with same user, and for testing
 	public void reset() {
 		this.startingValueSet = false;
 		this.endingValueSet = false;

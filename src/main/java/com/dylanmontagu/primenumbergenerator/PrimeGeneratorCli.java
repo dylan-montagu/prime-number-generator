@@ -3,12 +3,12 @@ package com.dylanmontagu.primenumbergenerator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class PrimeGeneraterCli {
+public class PrimeGeneratorCli {
 
 	PrimeNumberGenerator generator;
 	UserState userState;
 	
-	PrimeGeneraterCli(PrimeNumberGenerator generator) {
+	PrimeGeneratorCli(PrimeNumberGenerator generator) {
 		this.generator = generator;
 		this.userState = new UserState();
 	}
@@ -49,7 +49,8 @@ public class PrimeGeneraterCli {
     	}
         
         System.out.println(String.format("Prime numbers between %d and %d are listed below:", 
-        		userState.getStartingValue(), userState.getEndingValue()));
+        		userState.getStartingValue(), 
+        		userState.getEndingValue()));
         System.out.println(generator.generate(userState.getStartingValue(), userState.getEndingValue()));
         
         //clean up

@@ -65,5 +65,8 @@ public class PrimeNumberGeneratorTest {
 	public void testGenerateWithEqualArguments() {
 		List<Integer>expectedPrimeNumberResults = Arrays.asList(7901);
 		assertEquals(expectedPrimeNumberResults, generator.generate(7901, 7901));
+		
+		expectedPrimeNumberResults = Arrays.asList();
+		assertEquals(expectedPrimeNumberResults, generator.generate(0, 0));
 	}
 }

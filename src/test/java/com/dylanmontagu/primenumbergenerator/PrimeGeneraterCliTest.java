@@ -20,19 +20,20 @@ import org.junit.Test;
 
 public class PrimeGeneraterCliTest {
 
-	static PrimeGeneraterCli cli;
+	static PrimeGeneratorCli cli;
 	static PrimeNumberGenerator generator;
-	static PrimeGeneraterCli spyCli;
+	static PrimeGeneratorCli spyCli;
 	
 	@BeforeClass
 	public static void setup() {
 		generator = new SixKPrimeNumberGenerator();
-		cli = new PrimeGeneraterCli(generator);
-		spyCli = spy(new PrimeGeneraterCli(generator));
+		cli = new PrimeGeneratorCli(generator);
+		spyCli = spy(new PrimeGeneratorCli(generator));
 	}
 	
 	@After
 	public void resetUser() {
+		cli.userState.reset();
 		spyCli.userState.reset();
 	}
 	
@@ -53,8 +54,7 @@ public class PrimeGeneraterCliTest {
 	 */
 	@Test
 	public void testValidInputs() {
-		// arbitrary input data for spy'd scanner runs, not actually used
-    	StringToStdIn("1\n1\n1\n1\n1\n1\n");
+    	StringToStdIn("1\n1\n1\n1\n1\n1\n"); // arbitrary input data for scanner, not used
 		
 		doReturn(7)
 				.doReturn(7)
@@ -78,9 +78,8 @@ public class PrimeGeneraterCliTest {
 	 * """
 	 */
 	@Test 
-	public void testNonValidInputs() {
-		// arbitrary input data for spy'd scanner runs, not actually used    	
-    	StringToStdIn("1\n1\n1\n1\n1\n1\n");
+	public void testNonValidInputs() {	
+    	StringToStdIn("1\n1\n1\n1\n1\n1\n"); // arbitrary input data for scanner, not used
 		
 		doThrow(new InputMismatchException())
 				.doReturn(1)

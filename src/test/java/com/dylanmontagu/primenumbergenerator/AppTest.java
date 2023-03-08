@@ -13,7 +13,7 @@ public class AppTest
     public void contrivedTestForFullCoverage()
     {
     	App app = new App ();
-    	String input = "5\n5";
+    	String input = "5\n5\n";
     	InputStream in = new ByteArrayInputStream(input.getBytes());
     	System.setIn(in);
     	App.main(null);
