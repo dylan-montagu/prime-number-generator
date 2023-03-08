@@ -3,7 +3,7 @@ package com.dylanmontagu.primenumbergenerator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SquareRootIterativePrimeNumberGenerator implements PrimeNumberGenerator {
+public class SixKPrimeNumberGenerator implements PrimeNumberGenerator {
 
 	@Override
 	public List<Integer> generate(int startingValue, int endingValue) {
@@ -21,12 +21,13 @@ public class SquareRootIterativePrimeNumberGenerator implements PrimeNumberGener
 	public boolean isPrime(int value) {
 		if (value < 2) return false;
 		if (value == 2 || value == 3) return true;
-		
-		for (int i = 2; i <= Math.sqrt(value) + 1; i++) {
-			if (value % i == 0) {
-				return false; 
-			}
-		}
-		return true;
+	    if (value % 2 == 0 || value % 3 == 0) return false;
+	    
+	    for (int i = 6; i <= Math.sqrt(value) + 1; i += 6) {
+	        if (value % (i - 1) == 0 || value % (i + 1) == 0) {
+	        	return false;
+	        }
+	    }
+	    return true;
 	}
 }

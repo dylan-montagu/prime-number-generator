@@ -17,7 +17,7 @@ public class PrimeGeneraterCliTest {
 	
 	@BeforeClass
 	public static void setup() {
-		generator = new SquareRootIterativePrimeNumberGenerator();
+		generator = new SixKPrimeNumberGenerator();
 		cli = new PrimeGeneraterCli(generator);
 	}
 
@@ -38,7 +38,7 @@ public class PrimeGeneraterCliTest {
     			+ "[5]\n");
     	assertEquals(expectedOutput, outContent.toString());
 	}
-	
+
 	@Test
 	public void testInvalidInputs() {
     	String input = "a\n5\na\n5\n";

@@ -3,18 +3,29 @@ package com.dylanmontagu.primenumbergenerator;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
-public class SquareRootIterativePrimeNumberGeneratorTest {
-	static PrimeNumberGenerator generator;
+@RunWith(Parameterized.class)
+public class PrimeNumberGeneratorTest {
+	private PrimeNumberGenerator generator;
 	
-	@BeforeClass
-	public static void setup() {
-		generator = new SquareRootIterativePrimeNumberGenerator();
-	}
+    public PrimeNumberGeneratorTest(PrimeNumberGenerator generator) {
+    	this.generator = generator;
+    }
+
+    @Parameters
+    public static Collection<Object[]> getParameters() {
+      return Arrays.asList(new Object[][] {
+        { new SquareRootIterativePrimeNumberGenerator() },
+        { new SixKPrimeNumberGenerator() }
+      });
+    }
 	
 	@Test
 	public void testIsPrimeOnPrimeNumbers() {
