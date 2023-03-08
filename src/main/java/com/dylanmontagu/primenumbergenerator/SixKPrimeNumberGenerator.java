@@ -19,15 +19,18 @@ public class SixKPrimeNumberGenerator implements PrimeNumberGenerator {
 
 	@Override
 	public boolean isPrime(int value) {
-		if (value < 2) return false;
-		if (value == 2 || value == 3) return true;
-	    if (value % 2 == 0 || value % 3 == 0) return false;
-	    
-	    for (int i = 6; i <= Math.sqrt(value) + 1; i += 6) {
-	        if (value % (i - 1) == 0 || value % (i + 1) == 0) {
-	        	return false;
-	        }
-	    }
-	    return true;
+		if (value < 2)
+			return false;
+		if (value == 2 || value == 3)
+			return true;
+		if (value % 2 == 0 || value % 3 == 0)
+			return false;
+
+		for (int i = 6; i <= Math.sqrt(value) + 1; i += 6) {
+			if (value % (i - 1) == 0 || value % (i + 1) == 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
