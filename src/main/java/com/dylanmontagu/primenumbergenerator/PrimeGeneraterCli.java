@@ -13,8 +13,12 @@ public class PrimeGeneraterCli {
 		this.userState = new UserState();
 	}
 	
+	int getInput(Scanner scanner) {
+		return scanner.nextInt();
+	}
+	
 	public void generatePrimesFromCliInput() {
-        Scanner in = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         
         System.out.println("Prime number generator returns all prime numbers in a given range (inclusive)");
         
@@ -22,12 +26,12 @@ public class PrimeGeneraterCli {
         System.out.print("Enter starting value of range: ");
         while (!userState.isStartingValueSet()) {
 	        try {
-				userState.setStartingValue(in.nextInt());
+				userState.setStartingValue(getInput(scanner));
 				userState.setStartingValueSet(true);
 				break;
 			} catch (InputMismatchException e) {
 				System.out.print("Value inputted is not a valid int. Please enter a valid starting value: ");
-				in.next();
+				scanner.next();
 			}
     	}
 
@@ -35,12 +39,12 @@ public class PrimeGeneraterCli {
         System.out.print("Enter ending value of range: ");
         while (!userState.isEndingValueSet()) {
 	        try {
-				userState.setEndingValue(in.nextInt());
+				userState.setEndingValue(getInput(scanner));
 				userState.setEndingValueSet(true);
 				break;
 			} catch (InputMismatchException e) {
 				System.out.print("Value inputted is not a valid int. Please enter a valid ending value: ");
-				in.next();
+				scanner.next();
 			}
     	}
         
@@ -48,8 +52,9 @@ public class PrimeGeneraterCli {
         		userState.getStartingValue(), userState.getEndingValue()));
         System.out.println(generator.generate(userState.getStartingValue(), userState.getEndingValue()));
         
+        //clean up
         userState.setPrimeNumbersPrinted(true);
-        in.close();
+        scanner.close();
         
 	}
 }
